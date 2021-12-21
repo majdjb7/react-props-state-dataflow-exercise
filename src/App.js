@@ -13,6 +13,10 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
+      companies: [
+        { name: "Tesla", revenue: 140 },
+        { name: "Microsoft", revenue: 300 },
+        { name: "Google", revenue: 600 }],
       reservations: [
         { day: "Monday", time: 2000, name: "Earl" },
         { day: "Monday", time: 1845, name: "Ella" },
@@ -30,9 +34,21 @@ class App extends Component {
   }
   // SPOT-CHECK-2: 
   //  your generateCompanyTags method here 
+  generateCompanyTags = function(companies) {
+    let companiesArray = []
+    for(let c of companies) {
+      companiesArray.push(<Company name={c.name} revenue={c.revenue}/>)
+    }
+
+    return companiesArray
+  }
 
   // SPOT-CHECK-3:
   // your upperCase method here
+  makeUppercase = function(name) {
+    let upperCaseName = name.toUpperCase()
+    return upperCaseName
+  }
 
   render() {
 
@@ -41,8 +57,6 @@ class App extends Component {
       { name: "Microsoft", revenue: 300 },
       { name: "Google", revenue: 600 }]
 
-
-
     return (
       <div>
 
@@ -50,6 +64,7 @@ class App extends Component {
           <h4 className="ex-title">Spotcheck 1</h4>
           <div className="exercise" id="spotcheck-1">
             {/* your code here */}
+            <Company name={companies[0].name} revenue={companies[0].revenue} />
           </div>
         </div>
 
@@ -57,6 +72,8 @@ class App extends Component {
           <h4 className="ex-title">Spotcheck 2</h4>
           <div className="exercise" id="spotcheck-2">
             {/* your code here */}
+            {/* {this.generateCompanyTags(companies)} */}
+            {companies.map(c => <Company name={c.name} revenue={c.revenue} />)}
           </div>
         </div>
 
@@ -64,13 +81,15 @@ class App extends Component {
           <h4 className="ex-title">Spotcheck 3</h4>
           <div className="exercise" id="spotcheck-3">
             {/* your code here */}
+            {companies.map(c => <Company name={this.makeUppercase(c.name)} revenue={c.revenue} />)}
+            
           </div>
         </div>
 
         <div className="ex-space">
           <h4 className="ex-title">Spotcheck 4</h4>
           <div className="exercise" id="spotcheck-4">
-            {/* your code here */}
+            <Wardrobe />
           </div>
         </div>
 
@@ -78,6 +97,7 @@ class App extends Component {
           <h4 className="ex-title">Spotcheck 5</h4>
           <div className="exercise" id="spotcheck-5">
             {/* your code here */}
+            <Wardrobe2 />
           </div>
         </div>
 
@@ -85,6 +105,7 @@ class App extends Component {
           <h4 className="ex-title">Spotcheck 6</h4>
           <div className="exercise" id="spotcheck-6">
             {/* your code here */}
+            {this.state.companies.map(c => <Company name={c.name} revenue={c.revenue} />)}
           </div>
         </div>
 
@@ -92,6 +113,8 @@ class App extends Component {
           <h4 className="ex-title">Spotcheck 7</h4>
           <div className="exercise" id="spotcheck-7">
             {/* your code here */}
+            <Calendar reservations={this.state.reservations} />
+            <Register reservations={this.state.reservations} />
           </div>
         </div>
 
