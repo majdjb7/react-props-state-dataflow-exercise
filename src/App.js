@@ -28,7 +28,7 @@ class App extends Component {
         { item: "Gizem Backwatch", price: 230, discount: 0.6, hottest: false },
         { item: "Surround Sound Pelican", price: 3099, discount: 0.05, hottest: true }
       ],
-      shouldDiscount: false,
+      shouldDiscount: true,
       currentPage: "Landing"
     }
   }
@@ -122,6 +122,7 @@ class App extends Component {
           <h4 className="ex-title">Exercise 1</h4>
           <div className="exercise" id="ex-1">
             {/* your code here */}
+            <Hudini />
           </div>
         </div>
 
@@ -129,6 +130,8 @@ class App extends Component {
           <h4 className="ex-title">Exercise 2</h4>
           <div className="exercise" id="ex-2">
             {/* your code here */}
+            <Home store={this.state.store}/>
+            <Landing user={this.state.user} item={this.state.store.find(s => s.hottest)}/>
           </div>
         </div>
 
@@ -136,6 +139,9 @@ class App extends Component {
           <h4 className="ex-title">Exercise 3</h4>
           <div className="exercise" id="ex-3">
             {/* your code here */}
+            {this.state.currentPage == 'Landing' ? 
+             <Landing user={this.state.user} item={this.state.store.find(s => s.hottest)}/>
+            : <Home store={this.state.store}/>}
           </div>
         </div>
 
@@ -143,6 +149,7 @@ class App extends Component {
           <h4 className="ex-title">Exercise 4</h4>
           <div className="exercise" id="ex-4">
             {/* your code here */}
+            <Home store={this.state.store} shouldDiscount={this.state.shouldDiscount}/>
           </div>
         </div>
 
